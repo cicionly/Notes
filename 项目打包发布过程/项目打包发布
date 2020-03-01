@@ -10,15 +10,15 @@
     注意事项：解决冲突时，public目录下的冲突解决选择（accept current）接受当前。index.jsx类型文件选择（accept incoming）接受修改后的。
              其他文件尽量选择accept current；根据vscode右侧提示快捷找到冲突所在位置，打开工具图标查看冲突文件。
  （4）git status          查看是否仍然存在冲突文件
- （5）git add . -> git commit -m "说明"    解决冲突后提交没有冲突后的项目
- （6）yarn build   打包文件
+ （5）git add . -> git commit -m "说明" -> git push    解决冲突后提交没有冲突后的项目
+ （6）yarn build/npm run build   打包文件
   (7) git add . -> git commit -m "说明"  -> git push
 
 2、发布
   # jenkins地址
-    # prod环境：http://jenkins-dev.niub.la:8080/view/datacenter%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BA%BF%E4%B8%8A%E6%AD%A3%E5%BC%8F/job/online-stable-datacenter-DCWEBDispatcher/
+    # prod环境：http://jenkins-dev.niub.la:8080/view/job/online-stable-datacenter-DCWEBDispatcher/
      a. 打开网址
      b. 点击Build with Parameters按钮 ->build，revision不用修改
-    # pre环境：http://jenkins-dev.niub.la:8080/view/datacenter%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BA%BF%E4%B8%8A%E6%B5%8B%E8%AF%95/job/online-dev-datacenter-DCWEBDispatcher/
+    # pre环境：http://jenkins-dev.niub.la:8080/view/job/online-dev-datacenter-DCWEBDispatcher/
      a. 打开网址
      b. 点击Build with Parameters按钮 ->build，revision：输入release

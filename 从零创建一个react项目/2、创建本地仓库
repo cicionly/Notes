@@ -1,0 +1,25 @@
+2、创建本地仓库
+ (1) 在当前项目下创建仓库
+    git init
+    仓库级别：
+　　　　git config user.name xxx
+　　　　git config user.email xxx@xxx.com
+　　系统用户级别：
+　　　　git config --global user.name xxx
+　　　　git config --global user.email xxx@xxx.com
+　　仓库级别签名保存在 grpc007/.git /config 文件。系统用户级别签名保存在 C:\Users\win系统用户名\.gitconfig 文件。
+
+ (2) 创建SSH Key，建立本地Git仓库和GitHub仓库之间的传输的秘钥
+    (a) 公钥
+       ssh-keygen -t rsa -C 'your email'     //三次回车创建SSH Key
+       登录GitHub账号并打开settings
+       ->打开“SSH and GPG keys”页签
+       ->然后点击“new key”
+       ->随便输入一个Title名字，然后打开id_rsa.pub文件(一般在C盘的.ssh文件夹下)
+       ->把文件内容复制到key的输入框中，保存
+       至此公钥设置完成。
+    (b) 私钥
+       打开git bash窗口，执行命令“ssh -T git@github.com”
+       ->然后输入yes
+       ->successfully
+       至此本地私钥设置完成。

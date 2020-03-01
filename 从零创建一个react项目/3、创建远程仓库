@@ -1,0 +1,5 @@
+3、创建远程仓库
+ (1) 创建一个远程仓库
+    your repositories
+ (2) new->输入name和description
+ (3) 得到远程地址git@github.com:cicionly/model.git

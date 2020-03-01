@@ -1,0 +1,7 @@
+git pull                    //若有冲突需要解决冲突
+git add .                   //将文件添加到缓存区
+git add xxx                 //将xxx文件添加到缓存区
+git commit -m "提交说明"    //将缓存区内容添加到本地仓库
+git push                   //将本地仓库内容提交到远程仓库
+
+注意点：每次提交代码前必须先git pull

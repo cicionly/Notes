@@ -1,0 +1,30 @@
+5、常见错误
+ (1) 空目录
+    error: src refspec master does not match any.
+    error: failed to push some refs to 'git@github.com:cicionly/try.git'
+    解决：不能上传空目录
+ (2) 未设置邮箱和姓名
+    fatal: unable to auto-detect email address (got 'ASUS@DESKTOP-KLMK9AN.(none)') 
+    解决：git config --global user.name xxx
+　　　　  git config --global user.email xxx@xxx.com
+ (3) 未设置公钥私钥
+    No more authentication methods to try.
+    Permission denied (publickey).
+    解决：创建SSH Key，建立本地Git仓库和GitHub仓库之间的传输的秘钥
+      (a) 公钥
+         ssh-keygen -t rsa -C 'your email'     //三次回车创建SSH Key
+         登录GitHub账号并打开settings
+         ->打开“SSH and GPG keys”页签
+         ->然后点击“new key”
+         ->随便输入一个Title名字，然后打开id_rsa.pub文件(一般在C盘的.ssh文件夹下)
+         ->把文件内容复制到key的输入框中，保存
+       至此公钥设置完成。
+      (b) 私钥
+         打开git bash窗口，执行命令“ssh -T git@github.com”
+         ->然后输入yes
+         ->successfully
+         至此本地私钥设置完成。
+ (4) 远程仓库已存在
+    fatal:remote origin already exists
+    解决：git remote rm origin
+    

@@ -1,0 +1,8 @@
+总结：
+  git init
+  git config (--global) user.name xxx
+  git config (--global) user.email xxx
+  git add .
+  git commit -m ""
+  git remote add origin git@github.com:cicionly/model.git
+  git push -u origin master 

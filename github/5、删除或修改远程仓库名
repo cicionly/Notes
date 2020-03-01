@@ -1,0 +1,11 @@
+1、删除或修改
+ 打开仓库详情
+ ->settings
+ ->rename or delete(delete在最后)
+2、重新连接
+ (1)重新修改远程仓库地址再提交
+    git remote set-url origin git@github.com:cicionly/Baidu-Search.git
+ (2)删除原仓库重新连接新仓库
+    git remote             //查看远程库信息，比如得到origin
+    git remote rm origin
+    git remote add origin git@github.com:cicionly/Baidu-Search.git 

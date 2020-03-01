@@ -1,0 +1,3 @@
+git log                         //可以查看commit id 和提交说明
+git reset --hard HEAD^          //^表示上一个版本,^^表示上面两个,~30表示30个版本
+git reset --hard + commit id    //回退版本

@@ -1,0 +1,9 @@
+1、安装react，脚手架
+ (1) 安装脚手架 create-react-app
+    npm install -g create-react-app
+ (2) 创建项目
+    create-react-app my-app(项目名)
+ (3) 启动项目
+    cd my-app 
+    npm start --启动服务器
+2、webpack

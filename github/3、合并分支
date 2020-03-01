@@ -1,0 +1,15 @@
+一般发布线上环境的是master分支
+开发的是其他分支
+git checkout +分支名    //切换到当前分支，比如将其他分支内容切换到master(git checkout master)
+git merge              //将其他分支合并到当前分支中去
+git pull               //取回远程主机某个分支的更新，再与本地的指定分支合并
+git pull <远程主机名> <远程分支名>:<本地分支名>    //如果是使用git clone，建立了追踪关系，可以省略主机名
+
+合并分支会产生冲突，需要手动解决冲突，解决后重新提交
+git status        //查看项目的当前状态，查看是否有未解决的冲突
+git diff          //查看执行git status的结果详细信息
+
+重新提交
+git add .
+git commit -m ""
+git push

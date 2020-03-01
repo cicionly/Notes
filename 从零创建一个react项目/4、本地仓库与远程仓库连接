@@ -1,0 +1,11 @@
+4、将本地仓库内容传输到远程仓库
+ (1) 创建新的仓库提交
+       git add . 将修改的文件添加到缓存
+       git commit -m "first commit"
+       git remote add origin git@github.com:cicionly/model.git //推送到远程仓库
+       git push -u origin master //第一次把当前分支master推送到远程，-u参数不但推送，而且将本地的分支和远程的分支关联起来
+ (2) 将本地仓库内容推送到已有的远程仓库  
+       git remote add origin git@github.com:cicionly/model.git
+       git push -u origin master 
+ (3) 从远程仓库克隆一个项目
+       git clone git@github.com:username/repostery.git //从远程库克隆一个到本地库
