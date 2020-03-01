@@ -1,0 +1,11 @@
+1、 export default Suggest;
+    import Suggest from "";   
+2、 export Suggest;
+    import {Suggest} from "";
+
+export 与 export defualt的区别总结
+ (1) export 可以有多个， export defualt只能有一个
+ (2) export的名称必须和定义名称一致，export defualt不用
+ (3) 导入时：export A对应import {A} from …
+ (4) 导入时：export defualt B对应import B from …
+ (5) 两者都有时： import B ，{A} from …

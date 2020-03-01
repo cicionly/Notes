@@ -1,0 +1,5 @@
+class Person extends React.Component{
+    static defaultProps = {
+        name: '无名'
+    }
+}
