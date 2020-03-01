@@ -1,0 +1,7 @@
+1、安装
+   npm install prop-types -S
+2、导入
+   import PropTypes from 'prop-types'; 
+3、使用
+   name: PropTypes.string,
+   age: PropTypes.number.isRequired

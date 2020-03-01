@@ -1,2 +1,4 @@
-1、npm install bootstrap@3.2.0 -S  //要指定bootstrap版本，不然可能没有panel等的样式
-2、import 'bootstrap/dist/css/bootstrap.min.css';  //项目中导入
+1、安装
+   npm install bootstrap@3 -S  //要指定bootstrap版本，不然可能没有panel等的样式
+2、导入
+   import 'bootstrap/dist/css/bootstrap.min.css';  //项目中导入
