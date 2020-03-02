@@ -1,0 +1,23 @@
+1、安装
+   npm install jsonp
+2、导入
+   import jsonp from 'jsonp';
+3、使用
+    jsonp(`http://www.baidu.com/su?wd=${wd}`,{param:"cb"},(err,data)=>{
+        this.setState({
+            words:data.s
+        })
+    });
+
+    jsonp(url, opts, fn)    fn(err,data)=>{}
+    (1)url: (String) url to fetch
+    (2)opts: (Object), optional 
+        (a)param: (String) name of the query string parameter to specify the callback (defaults to callback)
+        (b)timeout: (Number) how long after a timeout error is emitted. 0 to disable (defaults to 60000)
+        (c)prefix: (String) prefix for the global callback functions that handle jsonp responses (defaults to __jp)
+        (d)name: (String) name of the global callback functions that handle jsonp responses (defaults to prefix + incremented counter)
+    (3)fn:callback
+    notes:
+      The callback is called with err, data parameters.
+      If it times out, the err will be an Error object whose message is Timeout.
+      Returns a function that, when called, will cancel the in-progress jsonp request (fn won't be called).
