@@ -1,0 +1,103 @@
+switch
+1、语法
+    switch 语句专门用来设计多分支条件结构。与 else/if 多分支结构相比，switch 结构更简洁，执行效率更高。语法格式如下： 
+    switch (expr) {
+        case value1 :
+            statementList1
+            break;
+        case value2 :
+            statementList2
+            break;
+            ...
+        case valuen :
+            statementListn
+            break;
+        default :
+            default statementList
+        }
+    switch 语句根据表达式 expr 的值，依次与 case 后表达式的值进行比较，如果相等，则执行其后的语句段，只有遇到 break 语句，或者 switch 语句结束才终止；如果不相等，则继续查找下一个 case。switch 语句包含一个可选的 default 语句，如果在前面的 case 中没有找到相等的条件，则执行 default 语句，它与 else 语句类似。
+
+2、实例解析
+   例1. 使用 switch 语句设计网站登录会员管理模块。 
+        var id = 1;
+        switch (id) {
+            case 1 :
+                console.log("普通会员");
+                break;  //停止执行，跳出switch
+            case 2 :
+                console.log("VIP会员");
+                break;  //停止执行，跳出switch
+            case 3 :
+                console.log("管理员");
+                break;  //停止执行，跳出switch
+            default :  //上述条件都不满足时，默认执行的代码
+                console.log("游客");
+    当 JavaScript 解析 switch 结构时，先计算条件表达式，然后计算第一个 case 子句后的表达式的值，
+    并使用全等===运算符来检测两值是否相同。由于使用的是全等运算符，因此不会自动转换每个值的类型。 
+    
+    例2. 把普通会员和 VIP 会员合并在一起进行检测。 
+        var id = 1;
+        switch (id) {
+            case 1 :
+            case 2 :
+            console.log("VIP会员");
+            break;
+        case 3 :
+            console.log("管理员");
+            break;
+        default : 
+            console.log("游客");
+        case 子句可以省略语句，这样当匹配时，不管下一个 case 条件是否满足，都会继续执行下一个 case 子句的语句。
+        在 switch 语句中，case 子句只是指明了执行起点，但是没有指明执行的终点。
+        如果在 case 子句中没有 break 语句，就会发生连续执行的情况，从而忽略后面 case 子句的条件限制，这样就容易破坏 switch 结构的逻辑。
+        如果在函数中使用 switch 语句，可以使用 return 语句终止 switch 语句，防止代码继续执行。 
+
+    例4. 如果 default 下面还有 case 子句，应该在 default 后面添加 break 语句，终止 switch 结构，防止程序突破 case 条件的限制继续执行下面 case 子句。 
+        var id = 1;
+        switch (id) {
+        default : 
+            console.log("游客");
+            break;
+        case 1 : 
+            console.log("普通会员");
+            break;
+        case 2 :
+            console.log("VIP会员");
+            break；
+        case 3 :
+            console.log("管理员");
+            break;
+        }
+
+    例5. 在下面代码中，JavaScript 先检测 case 表达式的值，由于 case 表达式的值都不匹配，则跳转到 default 子句执行，然后继续执行 case 1 和 case 2 子句。但是，最后不会返回 default 子句再重复执行。 
+        var id = 3;
+        switch (id) {
+            default : 
+                console.log("游客");
+            case 1 :
+                console.log("普通会员");
+            case 2 :
+                console.log("VIP会员");
+        }
+
+    例6. 使用 switch 语句设计一个四则运算函数。在 switch 结构内，先使用 case 枚举 4 种可预知的算术运算，当然还可以继续扩展 case 子句，枚举所有可能的操作，但是无法枚举所有不测，因此最后使用 default 处理意外情况。 
+        function oper (a,b,opr) {
+            switch (opr) {
+                case "+" :  //正常枚举
+                    return a + b;
+                case "-" :  //正常枚举
+                    return a - b;
+                case "*" :  //正常枚举
+                    return a * b;
+                case "/" :  //正常枚举
+                    return a / b;
+                default :  //异常处理
+                    return "非预期的 opr 值";
+            }
+        }
+        console.log(oper (2,5,"*"));  //返回10
+
+    default 语句与 case 语句简单比较如下： 
+        语义不同：default 为默认项，case 为判例。
+        功能扩展：default 选项是唯一的，不可以扩展。而 case 选项是可扩展的，没有限制。
+        异常处理：default 与 case 扮演的角色不同，case 用于枚举，default 用于异常处理。
