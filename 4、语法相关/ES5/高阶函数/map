@@ -1,0 +1,33 @@
+map
+1、语法
+    arr.map(callback)
+    由于map()方法定义在JavaScript的Array中，我们调用Array的map()方法，
+    传入我们自己的函数，就得到了一个新的Array作为结果：
+
+2、实例解析 
+    例1. 返回平方
+        function pow(x) {
+            return x * x;
+        }
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var results = arr.map(pow); 
+        console.log(results);    // [1, 4, 9, 16, 25, 36, 49, 64, 81]
+    注意：map()传入的参数是pow，即函数对象本身。
+
+    你可能会想，不需要map()，写一个循环，也可以计算出结果：
+        var f = function (x) {
+            return x * x;
+        };
+
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var result = [];
+        for (var i=0; i<arr.length; i++) {
+            result.push(f(arr[i]));
+        }
+        但是，从上面的循环代码，我们无法一眼看明白“把f(x)作用在Array的每一个元素并把结果生成一个新的Array”。
+        所以，map()作为高阶函数，事实上它把运算规则抽象了，
+        因此，我们不但可以计算简单的f(x)=x2，还可以计算任意复杂的函数
+    例2. 把Array的所有数字转为字符串：
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        arr.map(String); // ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        只需要一行代码。
