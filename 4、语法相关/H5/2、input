@@ -1,0 +1,2 @@
+1、自动聚焦
+<input autoFocus={true} className="form-control" type="text" />
