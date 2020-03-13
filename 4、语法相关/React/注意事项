@@ -1,0 +1,16 @@
+1、state状态可以修改，props不能修改
+   如果要修改父组件传过来的props里面的值，只能在父组件中创建修改函数，再将该函数传给子组件，从而进行修改
+2、对于经常需要使用的字符串，经常设置成一个常量，避免多次手动输入字符串会打错
+   const COM_key = "company_key";
+3、对于一个元素拥有多个属性，比如状态有"全部","未完成","已完成";通常将几个状态存放在一个单独的组件中再引入进来
+   避免多次手写导致错误
+    export default {
+        ALL : "all",
+        TODO : "todo",
+        COMPLETED : "completed"
+    }
+    使用：
+    import FilterTypes from "./FilterTypes";
+    this.state = {
+        FilterType: FilterTypes.ALL
+    }
