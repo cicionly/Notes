@@ -1,0 +1,8 @@
+1、第一次无法读取action
+       TypeError: Cannot read property 'type' of undefined
+   原因：
+       redux中, 调用了一次dispatch()初始化, 此时action没有传入值, 因此为undefined, 在此时要返回初始值状态
+   解决：
+        if (action === undefined) {
+            return state;
+        }

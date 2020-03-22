@@ -1,0 +1,8 @@
+1、不能在render的时候改变状态
+    Warning: Cannot update during an existing state transition (such as within `render`). 
+    Render methods should be a pure function of props and state.
+    原因：
+        onClick={this.handleClick(index)}
+        本意是传入index参数，其实这边已经执行handleClick函数了
+    解决：
+        onClick={()=>{this.handleClick(index)}}
