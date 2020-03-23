@@ -1,0 +1,10 @@
+1、字符串
+   常用的字符串需要通过变量保存，如果字符串较多，保存在单独的文件中再导入进来
+    const INCREASE = "increase";
+    const DECREASE = "decrease";
+    const ADD = "AddTodo";
+    const DEL = "deleteTodo";
+
+    export {INCREASE,DECREASE,ADD,DEL};
+
+2、redux只用一个store，将reducer保存在单独文件中，在sotre中将reducer合并

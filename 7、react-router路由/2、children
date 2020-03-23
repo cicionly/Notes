@@ -1,0 +1,7 @@
+Route需要当前路径与path匹配才能显示当前组件，children是无论是否匹配都渲染
+
+<Route path={to} children={({match}) =>
+        <li className={match ? 'active' : ''}>
+            <Link to={to}>{label}</Link>
+        </li>}
+/>

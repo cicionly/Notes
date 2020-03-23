@@ -1,0 +1,11 @@
+redirect跳转到相应路径，且可以通过对象向跳转的页面传递当前路径，便于从跳转的页面再跳转回来
+
+传递：
+export default function({component:Component,...rest}){
+    return <Route {...rest} render={props=>localStorage.getItem("login")?
+        <Component/>:<Redirect to={{pathname:"./login",state:{from:props.location.pathname}}}/>}>
+    </Route>
+}
+
+获取：
+props.history.push(props.location.state.from)

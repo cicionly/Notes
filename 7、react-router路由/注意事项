@@ -1,0 +1,22 @@
+1、采用<Router><Router/>里面只能放一个整体div
+2、<Route path="" component={}/>
+3、<Link to="">
+4、"/:id" :通配符
+5、exact 绝对匹配
+6、render={props=><div>首页</div>} 另一种组件渲染方式
+7、switch 匹配到第一个符合的就不继续匹配
+8、表格 tr,td外面要有thead
+    <table className="table table-responsive">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>姓名</td>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <td>{user.id}</td>
+                    <td>{user.name}</td>
+                </tr>
+            </thead>
+    </table>

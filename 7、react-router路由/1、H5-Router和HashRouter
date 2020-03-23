@@ -1,0 +1,13 @@
+1、采用hash路由，重复点击进入当前页面的链接时，会有警告
+   Warning: Hash history cannot PUSH the same path; 
+   a new entry will not be added to the history stack
+   原因：hash路由是通过history的对象的history.push()跳转，history是一个栈，不能推送相同的地址
+   解决：采用BrowserRouter
+
+2、使用的是BrowserRouter将页面上传至服务器之后，问题就来了：用户访问的资源不存在，页面是空白的。
+    原因：
+       在browserHistory 模式下，URL 是指向真实 URL 的资源路径，
+       当通过真实 URL 访问网站的时候，由于路径是指向服务器的真实路径，
+       但该路径下并没有相关资源，所以用户访问的资源不存在。
+    解决：
+       采用HashRouter，路径前面有一个#，调用接口后，#之后的都忽略，不匹配

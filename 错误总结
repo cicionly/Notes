@@ -6,3 +6,8 @@
         本意是传入index参数，其实这边已经执行handleClick函数了
     解决：
         onClick={()=>{this.handleClick(index)}}
+
+2、无法修改状态(针对我个人)
+   setState(list);   ->忘记加大括号
+   setState({list});
+   

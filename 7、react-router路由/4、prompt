@@ -1,0 +1,4 @@
+路由拦截，比如在当前界面跳转时，弹出提示框
+
+import {Prompt} from 'react-router-dom';
+<Prompt when={this.state.blocking} message="请问确定跳转吗"/>
