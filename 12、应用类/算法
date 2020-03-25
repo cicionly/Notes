@@ -1,0 +1,433 @@
+// 快排
+function quickSort(arr) {
+    var left = [];
+    var right = [];
+    var middle = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < middle) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+    // arr.length<=1,不能==,否则会栈溢出
+    if (arr.length <= 1) {
+        return arr;
+    } else {
+        return quickSort(left).concat(middle, quickSort(right));
+    }
+}
+
+// 冒泡
+function sort(arr) {
+    for (let j = 0; j < arr.length; j++) {
+        for (let i = 0; i < arr.length - j; i++) {
+            if (arr[i] > arr[i + 1]) {
+                let temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+// 用promise实现Ajax
+
+// setTimeout实现setInterval
+setTimeout(function () {
+    setTimeout(arguments.callee, time);
+}, time);
+
+
+// event bus
+
+// 二进制中1的个数
+function count(n){
+    var index = 1;
+    var sum = 0;
+    while(index!=0){
+        if((n&index)!=0){
+            sum++;
+        }
+        index = index<<1;
+    }
+    return sum;
+}
+
+// 连续最大子序列之和
+function maxSum(arr) {
+    var sum = arr[0];
+    var maxsum = arr[0];
+    for (var i = 1; i < arr.length; i++) {
+        if (sum < 0) {
+            sum = arr[i];
+        } else {
+            sum += arr[i];
+        }
+        if (sum > maxsum) {
+            maxsum = sum;
+        }
+    }
+    return maxsum;
+}
+
+// 连续最大子序列之积
+function maxMul(arr){
+    var min = arr[0];
+    var max = arr[0];
+    var res = arr[0];
+    for(var i=1;i<arr.length;i++){
+        var curmin = min*arr[i];
+        var curmax = max*arr[i];
+        max = Math.max(curmin,curmax,arr[i]);
+        min = Math.min(curmin,curmax,arr[i]);
+        res = res > max ? res : max;
+    }
+    return res;
+}
+
+// 二维数组的全排列
+
+// 第一个只出现一次的字符
+function first(arr){
+    for(var i=0;i<arr.length;i++){
+        if(arr.indexOf(arr[i])==arr.lastIndexOf(arr[i])){
+            return i;
+        }
+    }
+    return -1;
+}
+
+// 丑数
+function uglynumber(index) {
+    if (index == 0) {
+        return 0;
+    }
+    var arr = [1];
+    var para2 = 0, para3 = 0, para5 = 0;
+    for (var i = 1; i < index; i++) {
+        arr[i] = Math.min(arr[para2] * 2, arr[para3] * 3, arr[para5] * 5);
+        if (arr[i] == arr[para2] * 2) {
+            para2++;
+        }
+        if (arr[i] == arr[para3] * 3) {
+            para3++;
+        }
+        if (arr[i] == arr[para5] * 5) {
+            para5++;
+        }
+    }
+    return arr[index - 1];
+}
+
+// 合并升序链表
+function mergeTwoLists(l1, l2) {
+    var l3 = new ListNode(-1);
+    var c3 = l3;
+    while (l1 && l2) {
+        if (l1.val <= l2.val) {
+            c3.next = l1;
+            l1 = l1.next;
+        } else {
+            c3.next = l2;
+            l2 = l2.next;
+        }
+        c3 = c3.next;
+    }
+    c3.next = (l1 === null) ? l2 : l1;
+    return l3.next;
+};
+
+// 链表反转
+function reverseList(head) {
+    let headnode = head;
+    let cur = null;
+    while (head && head.next) {
+        cur = head.next;
+        head.next = cur.next;
+        cur.next = headnode;
+        headnode = cur;
+    }
+    return headnode;
+}
+
+// 单链表反转
+var head = { "val": "1", "next": { "val": "2", "next": { "val": "3", "next": { "val": "4", "next": { "val": "5", "next": null } } } } };
+var arr = [];
+while (head.next != null) {
+    arr.push(head.val);
+    head = head.next;
+}
+arr.push(head.val);
+console.log(arr);
+let obj = {};
+fn(obj, arr);
+function fn(obj, arr) {
+    if (arr.length != 0) {
+        obj.val = arr.pop();
+        obj.next = {};
+        fn(obj.next, arr);
+    } else {
+        obj.next = null;
+        return obj;
+    }
+}
+console.log(obj);
+
+// 相交链表
+function commonNode(head1, head2) {
+    let p = head1;
+    let q = head2;
+    let count1 = 0;
+    let count2 = 0;
+    if (!p || !q) {
+        return null;
+    }
+    if (p == q) {
+        return p;
+    }
+    while (p) {
+        count1++;
+        p = p.next;
+
+    }
+    while (q) {
+        count2++;
+        q = q.next;
+    }
+    p = head1;
+    q = head2;
+    if (count1 < count2) {
+        for (var i = count1; i < count2; i++) {
+            q = q.next;
+        }
+    } else if (count1 > count2) {
+        for (var j = count2; j < count1; j++) {
+            p = p.next;
+        }
+    }
+    while (p && q) {
+        if (p == q) {
+            return p;
+        } else {
+            p = p.next;
+            q = q.next;
+        }
+    }
+    return null;
+}
+
+// 链表的倒数第k个结点   
+function FindKthToTail(head, k) {
+    if (!head || !k) {
+        return null;
+    }
+    let front = head;
+    let after = head;
+    let index = 1;
+    while (front.next) {
+        index++;
+        front = front.next;
+        if (index > k) {
+            after = after.next;
+        }
+    }
+    return (k <= index) && after;
+}
+
+// 二叉搜索树的第k个结点
+function FindK(node, k) {
+    let result = [];
+    inorder(node, result);
+    if (k > 0 && k <= arr.length) {
+        return result[k - 1];
+    }
+    return null;
+}
+function inorder(node, result) {
+    if (node) {
+        inorder(node.left, result);
+        result.push(node);
+        inorder(node.right, result);
+    }
+}
+
+// 先序遍历 递归版
+function preorder(root, arr) {
+    if (root) {
+        arr.push(root.val);
+        preorder(root.left, arr);
+        preorder(root.right, arr);
+    }
+    return arr;
+}
+
+// 非递归版
+function preorder(root) {
+    let result = [];
+    let stack = [];
+    let cur = root;
+    while (cur || stack.length > 0) {
+        while (cur) {
+            result.push(cur.val);
+            stack.push(cur);
+            cur = cur.left;
+        }
+        cur = stack.pop();
+        cur = cur.right;
+    }
+    return result;
+}
+
+// 中序遍历 递归版
+function inorder(root, arr) {
+    if (root) {
+        inorder(root.left, arr);
+        arr.push(root.val);
+        inorder(root.right, arr);
+    }
+    return arr;
+}
+
+// 非递归版
+function inorder(root) {
+    let result = [];
+    let stack = [];
+    let cur = root;
+    while (cur || stack.length > 0) {
+        while (cur) {
+            stack.push(cur);
+            cur = cur.left;
+        }
+        cur = stack.pop();
+        result.push(cur.val);
+        cur = cur.right;
+    }
+}
+
+// 后序遍历 递归版
+function postorder(root, arr) {
+    if (root) {
+        postorder(root.left, arr);
+        postorder(root.right, arr);
+        arr.push(root.val);
+    }
+    return arr;
+}
+
+// 非递归版
+function postorder(root) {
+    let result = [];
+    let stack = [];
+    let cur = root;
+    let last = null;
+    while (cur || stack.length > 0) {
+        while (cur) {
+            stack.push(cur);
+            cur = cur.left;
+        }
+        cur = stack[stack.length - 1];
+        if (!cur.right || cur.right == last) {
+            cur = stack.pop();
+            result.push(cur.val);
+            last = cur;
+            cur = null;
+        } else {
+            cur = cur.right;
+        }
+    }
+    return result;
+}
+
+// 判断平衡二叉树
+function isBalance(root){
+    return isBalance(root)!=-1;
+} 
+function balance(node){
+    if(!node){
+        return 0;
+    }
+    let left = balance(node.left);
+    let right = balance(node.right);
+    if(left==-1||right==-1||Math.abs(left-right)>1){
+        return -1;
+    }
+    return Math.max(left,right)+1;
+}
+
+// 深度优先
+function DFS(root) {
+    let result = [];
+    if (root) {
+        var stack = [];
+        stack.push(root);
+        while (stack.length != 0) {
+            var cur = stack.pop();
+            result.push(cur);
+            var child = cur.children;
+            for (var i = child.length - 1; i >= 0; i--) {
+                stack.push(child[i]);
+            }
+        }
+    }
+    return result;
+}
+
+// 广度优先
+function BFS(root) {
+    let result = [];
+    if (root) {
+        var queue = [];
+        queue.push(root);
+        while (queue.length != 0) {
+            var cur = queue.shift();
+            result.push(cur);
+            var child = cur.children;
+            for (var i = 0; i < child.length; i--) {
+                queue.push(child[i]);
+            }
+        }
+    }
+    return result;
+}
+
+// 根据先序和中序构建二叉树
+function build(pre,ino){
+    if(pre.length==0){
+        return null;
+    }
+    if(pre.length == 1){
+        return new TreeNode(pre[0]);
+    }
+    var root = pre[0];
+    var index = ino.indexOf(root);
+    var preleft = pre.slice(1,index);
+    var preright = pre.slice(index+1);
+    var inoleft = ino.slice(0,index);
+    var inoright = ino.slice(index+1);
+    var node = new TreeNode(root);
+    node.left = build(preleft,inoleft);
+    node.right = build(preright,inoright);
+    return node;
+}
+
+// 根据先序和中序求后序遍历
+function build(pre,ino){
+    if(!pre){
+        return '';
+    }
+    if(pre.length == 1){
+        return pre;
+    }
+    var root = pre[0];
+    var index = ino.indexOf(root);
+    var preleft = pre.slice(1,index);
+    var preright = pre.slice(index+1);
+    var inoleft = ino.slice(0,index);
+    var inoright = ino.slice(index+1);
+    return build(preleft,inoleft)+build(preright,inoright)+root;
+}
+
+
+// 
