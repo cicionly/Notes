@@ -1,0 +1,32 @@
+// 实现双向绑定 obsever
+var dep = new Dep();
+Object.defineProperty(obj, 'text', {
+    configurable: true,
+    enumerable: true,
+    get() {
+        dep.addSub(watcher);
+        return obj['text'];
+    },
+    set(newVal) {
+        input.value = newVal;
+        span.innerHTML = newVal;
+        dep.notifiy();
+    }
+});
+input.addEventListener('keyup', function (e) {
+    obj.text = e.target.value;
+});
+
+function Dep() {
+    this.subs = [];
+}
+Dep.prototype = {
+    addSub: function (sub) {
+        this.subs.push(sub);
+    },
+    notifiy: function () {
+        this.subs.forEach(sub => {
+            sub.update();
+        });
+    }
+}

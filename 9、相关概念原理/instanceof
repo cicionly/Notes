@@ -1,0 +1,10 @@
+function _instanceof(obj1, obj2) {
+    if (obj1 == null) {
+        return false;
+    }
+    if (obj1.__proto__ == obj2.prototype) {
+        return true;
+    } else {
+        return _instanceof(obj1.__proto__, obj2);
+    }
+}

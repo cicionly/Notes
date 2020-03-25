@@ -1,0 +1,47 @@
+// call原理  参数是一个一个传进来的，立即执行调用call的函数，如bar.call(obj,1);则会立即执行bar函数
+Function.prototype.mycall = function (context) {
+    let args = [...arguments].slice(1);
+    context = context || window;
+    context.fn = this;
+    let result = context.fn(...args);
+    delete context.fn;
+    return result;
+}
+
+// apply原理  参数是作为一个数组传递进来的，立即调用apply函数
+Function.prototype.myapply = function (context, args) {
+    let result;
+    context = context || window;
+    context.fn = this;
+    if (args) {
+        result = context.fn(...args);
+    } else {
+        result = context.fn();
+    }
+    delete context.fn;
+    return result;
+}
+
+// bind原理  bind返回的是函数，不会立即执行。如果返回的函数用new来创建，则实际上是从bind返回的函数的原型链上找
+// 执行的是调用bind的函数
+Function.prototype.mybind = function (context) {
+    let args = [...arguments].slice(1);
+    let that = this;
+    return function F() {
+        if (this instanceof F) {
+            return new that(...args, ...arguments);
+        } else {
+            return that.apply(context, args.concat(...arguments));
+        }
+    }
+}
+
+// 对于c和b执行instanceof的时候，其实判断的是c和b的目标函数A的关系
+// 最后是执行正常的instanceof判断，也就是根据原型链去判断
+// 从上一篇中我们知道，c是用A去new出来的，所以c instanceof b是返回true的。
+function A() {
+}
+var b = A.bind({})
+var c = new b();
+c instanceof A // true
+c instanceof b // true

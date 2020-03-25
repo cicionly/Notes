@@ -1,0 +1,4 @@
+// 扁平化
+function flat(arr) {
+    return arr.reduce((one, two) => Array.isArray(two) ? one.concat(flat(two)) : one.concat(two), []);
+}

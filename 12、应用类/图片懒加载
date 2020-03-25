@@ -1,0 +1,11 @@
+// 图片懒加载
+let clientHeight = window.innerHeight;
+function lazy() {
+    let scrolltop = window.pageYOffset;
+    for (var i = 0; i < images.length; i++) {
+        let x = clientHeight + scrolltop - image[i].offsetTop;
+        if (x > 0 && x < clientHeight + image[i].height) {
+            image[i].src = image[i].getAttribute('data');
+        }
+    }
+}

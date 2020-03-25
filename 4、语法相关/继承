@@ -1,0 +1,51 @@
+function Parent(name) {
+    this.name = name;
+    this.color = ['red', 'blue'];
+}
+Parent.prototype.getName = () => {
+    console.log(this.name);
+}
+
+var parent1 = new Parent('parent');
+
+function Child(name) {
+    this.name = name;
+}
+
+// 原型链继承  父类实例对象作为子类原型   
+// 优点：继承父类函数的方法和属性同时继承了原型对象的方法和属性  
+// 缺点：当在一个子类的实例上修改父类的属性和方法时，其它的子类也会受到影响(相当于改变了子类原型链上的属性
+Child.prototype = new Parent();
+var child1 = new Child();
+var child2 = new Child();
+console.log(child1.color); //["red", "blue"]
+console.log(child2.color); //["red", "blue"]
+child1.color.push('black');
+console.log(child1.color); //["red", "blue", "black"]
+console.log(child2.color); //["red", "blue", "black"]
+
+// 构造函数继承   没有涉及原型链，无法实现函数复用
+function Child(name) {
+    Parent.call(this);
+}
+
+// 组合继承    调用两次父类构造函数
+Child.prototype = new Parent();
+function Child(name) {
+    Parent.call(this);
+}
+
+// 组合继承优化1  解决调用两次父类构造函数的问题
+Child.prototype = Parent.prototype;
+function Child(name) {
+    Parent.call(this);
+}
+var child = new Child();
+console.log(child.constructor);//Parent
+
+// 组合继承优化二  创建一个中间对象，隔离父类和子类
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+function Child(name) {
+    Parent.call(this);
+}

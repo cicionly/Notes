@@ -1,0 +1,20 @@
+// Object.create()原理
+function create(obj) {
+    function F() { };
+    F.prototype = obj;
+    return F;
+}
+
+// new原理
+Object.prototype._new = function () {
+    let obj = {};
+    let [constructor, ...args] = [...arguments];
+    obj.__proto__ = constructor.prototype;
+    let result = constructor.apply(obj, args);
+    if (typeof result == 'object' || typeof result == 'function') {
+        return result;
+    }
+    return obj;
+}
+typeof Object == 'function' //true 大写
+typeof Object() == 'object' //true

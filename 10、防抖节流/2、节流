@@ -1,0 +1,28 @@
+// 节流  时间戳版
+function throttle(fn, delay) {
+    let previous = 0;
+    return function () {
+        let current = Date.now();
+        let context = this;
+        let args = arguments;
+        if (current - previous > delay) {
+            fn.apply(context, args);
+            previous = current;
+        }
+    }
+}
+
+// 节流  定时器版
+function throttle(fn, delay) {
+    let timer;
+    return function () {
+        let context = this;
+        let args = arguments;
+        if (!timer) {
+            timer = setTimeout(function () {
+                timer = null;
+                fn.apply(context, args);
+            }, delay);
+        }
+    }
+}

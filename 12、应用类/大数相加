@@ -1,0 +1,13 @@
+// 大数相加
+function merge(s1,s2){
+    var a = s1.split('');
+    var b = s2.split('');
+    var sum = 0;
+    var res = '';
+    while(a.length||b.length||sum){
+        sum += ~~a.pop() + ~~b.pop();
+        res = (sum%10) + res;
+        sum = sum > 9;
+    }
+    return res;
+}

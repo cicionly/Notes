@@ -1,0 +1,32 @@
+class _promise {
+    constructor(fn) {
+        this.state = 'pending';
+        this.value = undefined;
+        this.reason = undefined;
+        let resolve = value => {
+            if (this.state == 'pending') {
+                this.state = 'fullfilled';
+                this.value = value;
+            }
+        }
+        let reject = value => {
+            if (this.state == 'pending') {
+                this.state = 'rejected';
+                this.reason = value;
+            }
+        }
+        try {
+            fn(resolve, reject);
+        } catch {
+            reject(e);
+        }
+    }
+    // then
+    then(onFillfilled, onRejected) {
+        switch (this.state) {
+            case 'fullfilled': onFillfilled(); break;
+            case 'rejected': onRejected(); break;
+            default:
+        }
+    }
+}
